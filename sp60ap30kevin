@@ -1,0 +1,50 @@
+#!/bin/bash
+
+while true; do
+    echo "Por favor, selecciona una opción:"
+    echo "1) loaded"
+    echo "2) not-found"
+    echo "3) active"
+    echo "4) inactive"
+    echo "5) dead"
+    echo "6) running"
+    echo "7) Salir"
+
+    read -p "Elige una opción (1-7): " opcion
+
+    case $opcion in
+        1)
+            echo "Servicios con estado 'loaded':"
+            systemctl list-units --type=service | grep "loaded"
+            ;;
+        2)
+            echo "Servicios con estado 'not-found':"
+            systemctl list-units --type=service | grep "not-found"
+            ;;
+        3)
+            echo "Servicios con estado 'active':"
+            systemctl list-units --type=service | grep "active"
+            ;;
+        4)
+            echo "Servicios con estado 'inactive':"
+            systemctl list-units --type=service | grep "inactive"
+            ;;
+        5)
+            echo "Servicios con estado 'dead':"
+            systemctl list-units --type=service | grep "dead"
+            ;;
+        6)
+            echo "Servicios con estado 'running':"
+            systemctl list-units --type=service | grep "running"
+            ;;
+        7)
+            echo "Saliendo del menú. ¡Hasta luego!"
+            exit 0
+            ;;
+        *)
+            echo "Opción no válida, intenta de nuevo."
+            ;;
+    esac
+
+    echo
+done
